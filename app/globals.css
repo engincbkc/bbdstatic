@@ -1,0 +1,213 @@
+/* Tailwind Directives */
+/* Bu direktifler Tailwind tarafından işlenir ve çıktı CSS'e dönüştürülür */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Temel stil sınıfları */
+.container-custom {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.dark .card {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+.btn-primary {
+  background-color: #dc2626;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition-property: background-color;
+  transition-duration: 150ms;
+}
+
+.btn-primary:hover {
+  background-color: #b91c1c;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #dc2626;
+  border: 1px solid #dc2626;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition-property: background-color;
+  transition-duration: 150ms;
+}
+
+.btn-secondary:hover {
+  background-color: #f3f4f6;
+}
+
+.heading-xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .heading-xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+.heading-lg {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+.heading-md {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+:root {
+  /* Light Mode */
+  --primary-red: #DC2626;
+  --primary-red-dark: #B91C1C;
+  --secondary-red: #FEF2F2;
+  
+  --dark-gray: #1F2937;
+  --charcoal: #111827;
+  --light-gray: #F9FAFB;
+  --medium-gray: #6B7280;
+  --border-gray: #E5E7EB;
+  
+  --white: #FFFFFF;
+  --black: #000000;
+  
+  --accent-orange: #F97316;
+  --accent-orange-light: #FED7AA;
+  
+  --success-green: #10B981;
+  --warning-yellow: #F59E0B;
+  --info-blue: #3B82F6;
+  
+  --background: var(--white);
+  --foreground: var(--charcoal);
+  --card-background: var(--white);
+  --card-foreground: var(--dark-gray);
+}
+
+[data-theme="dark"] {
+  /* Dark Mode */
+  --primary-red: #EF4444;
+  --primary-red-dark: #DC2626;
+  --secondary-red: #1F1415;
+  
+  --dark-gray: #F9FAFB;
+  --charcoal: #FFFFFF;
+  --light-gray: #111827;
+  --medium-gray: #9CA3AF;
+  --border-gray: #374151;
+  
+  --white: #1F2937;
+  --black: #F9FAFB;
+  
+  --accent-orange: #FB923C;
+  --accent-orange-light: #431407;
+  
+  --success-green: #34D399;
+  --warning-yellow: #FBBF24;
+  --info-blue: #60A5FA;
+  
+  --background: var(--light-gray);
+  --foreground: var(--dark-gray);
+  --card-background: var(--charcoal);
+  --card-foreground: var(--light-gray);
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)];
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+  
+  a {
+    @apply text-primary-600 hover:text-primary-500 transition-colors;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-500 text-white py-2 px-4 rounded-md transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-dark-800 hover:bg-dark-700 text-white py-2 px-4 rounded-md transition-colors;
+  }
+  
+  .card {
+    @apply bg-[var(--card-background)] rounded-lg shadow-md p-6;
+  }
+  
+  .container-custom {
+    @apply px-4 mx-auto max-w-7xl sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-bounce-subtle {
+    animation: bounceSubtle 2s infinite;
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounceSubtle {
+  0%, 100% { transform: translateY(-5%); }
+  50% { transform: translateY(0); }
+}

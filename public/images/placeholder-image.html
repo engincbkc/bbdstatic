@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Görsel Oluşturucu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        h1 {
+            color: #dc2626;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>BBD Garage - Placeholder Görselleri</h1>
+    <p>Aşağıdaki görsellerin oluşturulması gerekiyor:</p>
+    
+    <ul>
+        <li><code>hero-bg.jpg</code> - Ana sayfa hero görseli</li>
+        <li><code>about-hero.jpg</code> - Hakkımızda sayfası hero görseli</li>
+        <li><code>services-hero.jpg</code> - Hizmetler sayfası hero görseli</li>
+        <li><code>store-hero.jpg</code> - Mağaza sayfası hero görseli</li>
+        <li><code>contact-hero.jpg</code> - İletişim sayfası hero görseli</li>
+        <li><code>about-image.jpg</code> - Hakkımızda sayfası şirket görseli</li>
+        <li><code>team-member-1.jpg</code>, <code>team-member-2.jpg</code>, <code>team-member-3.jpg</code> - Ekip üyeleri</li>
+        <li><code>product-1.jpg</code> ila <code>product-8.jpg</code> - Mağaza ürün görselleri</li>
+    </ul>
+    
+    <div class="tip">
+        <strong>İpucu:</strong> Bu görselleri hızlıca oluşturmak için <a href="https://picsum.photos" target="_blank">Picsum Photos</a> ya da <a href="https://placeholder.com" target="_blank">Placeholder.com</a> gibi placeholder görsel servisleri kullanabilirsiniz. Ya da kendi görsellerinizi ekleyebilirsiniz.
+    </div>
+    
+    <h2>Örnek Kod:</h2>
+    <p>Placeholder görselleri indirmek için PowerShell komutu:</p>
+    <pre>
+$urls = @(
+    "https://picsum.photos/seed/hero/1200/600 hero-bg.jpg",
+    "https://picsum.photos/seed/about/1200/600 about-hero.jpg",
+    "https://picsum.photos/seed/services/1200/600 services-hero.jpg",
+    "https://picsum.photos/seed/store/1200/600 store-hero.jpg",
+    "https://picsum.photos/seed/contact/1200/600 contact-hero.jpg",
+    "https://picsum.photos/seed/company/600/400 about-image.jpg",
+    "https://picsum.photos/seed/team1/300/300 team-member-1.jpg",
+    "https://picsum.photos/seed/team2/300/300 team-member-2.jpg",
+    "https://picsum.photos/seed/team3/300/300 team-member-3.jpg",
+    "https://picsum.photos/seed/product1/400/300 product-1.jpg",
+    "https://picsum.photos/seed/product2/400/300 product-2.jpg",
+    "https://picsum.photos/seed/product3/400/300 product-3.jpg",
+    "https://picsum.photos/seed/product4/400/300 product-4.jpg",
+    "https://picsum.photos/seed/product5/400/300 product-5.jpg",
+    "https://picsum.photos/seed/product6/400/300 product-6.jpg",
+    "https://picsum.photos/seed/product7/400/300 product-7.jpg",
+    "https://picsum.photos/seed/product8/400/300 product-8.jpg"
+)
+
+$outputPath = ".\public\images\"
+
+foreach ($item in $urls) {
+    $parts = $item -split " "
+    $url = $parts[0]
+    $filename = $parts[1]
+    $outputFile = Join-Path $outputPath $filename
+    
+    Write-Host "İndiriliyor: $url -> $outputFile"
+    Invoke-WebRequest -Uri $url -OutFile $outputFile
+}
+
+Write-Host "Tüm görseller indirildi!"
+    </pre>
+</body>
+</html>
